@@ -1,51 +1,55 @@
-export const HTTP_CONTINUE = 100
-export const HTTP_SWITCHING_PROTOCOLS = 101
-export const HTTP_PROCESSING = 102
-export const HTTP_EARLY_HINTS = 103
-export const HTTP_OK = 200
-export const HTTP_CREATED = 201
-export const HTTP_ACCEPTED = 202
-export const HTTP_NON_AUTHORITATIVE_INFORMATION = 203
-export const HTTP_NO_CONTENT = 204
-export const HTTP_RESET_CONTENT = 205
-export const HTTP_PARTIAL_CONTENT = 206
-export const HTTP_MULTI_STATUS = 207
-export const HTTP_ALREADY_REPORTED = 208
-export const HTTP_IM_USED = 226
-export const HTTP_MULTIPLE_CHOICES = 300
-export const HTTP_MOVED_PERMANENTLY = 301
-export const HTTP_FOUND = 302
-export const HTTP_SEE_OTHER = 303
-export const HTTP_NOT_MODIFIED = 304
-export const HTTP_USE_PROXY = 305
-export const HTTP_RESERVED = 306
-export const HTTP_TEMPORARY_REDIRECT = 307
-export const HTTP_PERMANENTLY_REDIRECT = 308
-export const HTTP_BAD_REQUEST = 400
-export const HTTP_UNAUTHORIZED = 401
-export const HTTP_PAYMENT_REQUIRED = 402
-export const HTTP_FORBIDDEN = 403
-export const HTTP_NOT_FOUND = 404
-export const HTTP_METHOD_NOT_ALLOWED = 405
-export const HTTP_NOT_ACCEPTABLE = 406
-export const HTTP_PROXY_AUTHENTICATION_REQUIRED = 407
-export const HTTP_REQUEST_TIMEOUT = 408
-export const HTTP_CONFLICT = 409
-export const HTTP_GONE = 410
-export const HTTP_LENGTH_REQUIRED = 411
-export const HTTP_PRECONDITION_FAILED = 412
-export const HTTP_REQUEST_ENTITY_TOO_LARGE = 413
-export const HTTP_REQUEST_URI_TOO_LONG = 414
-export const HTTP_UNSUPPORTED_MEDIA_TYPE = 415
-export const HTTP_REQUESTED_RANGE_NOT_SATISFIABLE = 416
-export const HTTP_EXPECTATION_FAILED = 417
-export const HTTP_I_AM_A_TEAPOT = 418
-export const HTTP_MISDIRECTED_REQUEST = 421
-export const HTTP_UNPROCESSABLE_ENTITY = 422
-export const HTTP_LOCKED = 423
-export const HTTP_FAILED_DEPENDENCY = 424
+'use strict';
 
-export const STATUS_TEXTS = {
+const statusCodes = {
+  HTTP_CONTINUE: 100,
+  HTTP_SWITCHING_PROTOCOLS: 101,
+  HTTP_PROCESSING: 102,
+  HTTP_EARLY_HINTS: 103,
+  HTTP_OK: 200,
+  HTTP_CREATED: 201,
+  HTTP_ACCEPTED: 202,
+  HTTP_NON_AUTHORITATIVE_INFORMATION: 203,
+  HTTP_NO_CONTENT: 204,
+  HTTP_RESET_CONTENT: 205,
+  HTTP_PARTIAL_CONTENT: 206,
+  HTTP_MULTI_STATUS: 207,
+  HTTP_ALREADY_REPORTED: 208,
+  HTTP_IM_USED: 226,
+  HTTP_MULTIPLE_CHOICES: 300,
+  HTTP_MOVED_PERMANENTLY: 301,
+  HTTP_FOUND: 302,
+  HTTP_SEE_OTHER: 303,
+  HTTP_NOT_MODIFIED: 304,
+  HTTP_USE_PROXY: 305,
+  HTTP_RESERVED: 306,
+  HTTP_TEMPORARY_REDIRECT: 307,
+  HTTP_PERMANENTLY_REDIRECT: 308,
+  HTTP_BAD_REQUEST: 400,
+  HTTP_UNAUTHORIZED: 401,
+  HTTP_PAYMENT_REQUIRED: 402,
+  HTTP_FORBIDDEN: 403,
+  HTTP_NOT_FOUND: 404,
+  HTTP_METHOD_NOT_ALLOWED: 405,
+  HTTP_NOT_ACCEPTABLE: 406,
+  HTTP_PROXY_AUTHENTICATION_REQUIRED: 407,
+  HTTP_REQUEST_TIMEOUT: 408,
+  HTTP_CONFLICT: 409,
+  HTTP_GONE: 410,
+  HTTP_LENGTH_REQUIRED: 411,
+  HTTP_PRECONDITION_FAILED: 412,
+  HTTP_REQUEST_ENTITY_TOO_LARGE: 413,
+  HTTP_REQUEST_URI_TOO_LONG: 414,
+  HTTP_UNSUPPORTED_MEDIA_TYPE: 415,
+  HTTP_REQUESTED_RANGE_NOT_SATISFIABLE: 416,
+  HTTP_EXPECTATION_FAILED: 417,
+  HTTP_I_AM_A_TEAPOT: 418,
+  HTTP_MISDIRECTED_REQUEST: 421,
+  HTTP_UNPROCESSABLE_ENTITY: 422,
+  HTTP_LOCKED: 423,
+  HTTP_FAILED_DEPENDENCY: 424
+}
+
+const statusTexts = {
   100: 'Continue',
   101: 'Switching Protocols',
   102: 'Processing',            // RFC2518
@@ -110,33 +114,35 @@ export const STATUS_TEXTS = {
   511: 'Network Authentication Required',                             // RFC6585
 }
 
-export class HttpResponseException extends Error {
+class HttpResponseException extends Error {
+  // invalidargumentexception
   constructor (status, message = '') {
-    super(message)
+    super();
     if (Error.captureStackTrace) {
-      Error.captureStackTrace(this, HttpException)
+      Error.captureStackTrace(this, HttpResponseException);
     }
 
-    this.name = 'HttpException'
-    this.status = status
+    //if (!this.message) {
+    this.message = message ? message : statusTexts[status];
+    //}
+
+    this.name = HttpResponseException.name;
+    this.status = status;
   }
 }
 
-export function httpErrorHandlerMiddleware (err, req, res, next) {
+function httpErrorHandlerMiddleware (err, req, res, next) {
   // Pass on non-http base error
-  // !(err instanceof HttpException && STATUS_TEXTS[err.status])
-  // (err && err.status && !STATUS_TEXTS[err.status])
-  if (res.headersSent || !(err instanceof HttpException)) {
-    return next(err)
+  if (res.headersSent || !(err instanceof HttpResponseException)) {
+    return next(err);
   }
 
-  res.json(err.status, {message: err.message || STATUS_TEXTS[err.status]})
+  res.json(err.status, {message: err.message});
 }
 
-// Todo how to use promises instead for try catch block
-// app.get("/", function (req, res, next) {
-//   Promise.resolve().then(function () {
-//     throw new Error("BROKEN")
-//   }).catch(next) // Errors will be passed to Express.
-// })
-
+module.exports = {
+  statusCodes,
+  statusTexts,
+  httpErrorHandlerMiddleware,
+  HttpResponseException
+};

@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "A collection of HTTP utils for express",
   "main": "index.js",
+  "engines": {
+    "node": ">=8.9.4"
+  },
   "scripts": {
     "test": "mocha test"
   },
