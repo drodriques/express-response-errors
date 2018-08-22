@@ -1,7 +1,7 @@
 const assert = require('assert');
+const util = require('util');
 
 const { HttpResponseException, statusCodes } = require('..');
-
 const { HTTP_I_AM_A_TEAPOT } = statusCodes;
 
 describe('HttpResponseException', function () {
@@ -16,12 +16,16 @@ describe('HttpResponseException', function () {
     done();
   })
 
-  it('should be instance of error of HttpResponseException', function(done) {
+  it('should be instance of HttpResponseException', function(done) {
       assert(httpError instanceof HttpResponseException);
       done();
   })
 
-  // The name property should be set to the error's name
+  it('should be recognized by Node.js', function(done) {
+    assert(util.isError(httpError));
+    done();
+  })
+
   it('should have name of custom class', function(done) {
     assert.strictEqual(httpError.name, 'HttpResponseException');
     done();
@@ -39,46 +43,13 @@ describe('HttpResponseException', function () {
     done();
   })
 
-  it('should throw error with correct status code', function(done) {
+  it('should have status set to constructor parameter', function(done) {
     assert.strictEqual(httpError.status, 418);
     done();
   })
 
-  it('should throw error with stack', function(done) {
+  it('should set a value for stack', function(done) {
     assert(httpError.stack);
     done();
   })
-
-})
-
-// The name property should be set to the error's name
-// assert(err.name = 'CustomError');
-
-// The error should be an instance of its class
-// assert(err instanceof CustomError);
-
-// The error should be an instance of builtin Error
-// assert(err instanceof Error);
-
-// The error should be recognized by Node.js' util#isError
-// assert(require('util').isError(err));
-
-// The error should have recorded a stack
-// assert(err.stack);
-
-// toString should return the default error message formatting
-// assert.strictEqual(err.toString(),
-//   'CustomError: It went bad!');
-
-// The stack should start with the default error message formatting
-// assert.strictEqual(err.stack.split('\n')[0],
-//   'CustomError: It went bad!');
-
-// The first stack frame should be the function where the error was thrown.
-// assert.strictEqual(err.stack.split('\n')[1].indexOf('doSomethingBad'), 7);
-
-// The extra property should have been set
-// assert.strictEqual(err.extra, 42);
-
-
-
+});
