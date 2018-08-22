@@ -1,7 +1,9 @@
 const assert = require('assert');
 const util = require('util');
 
-const { HttpResponseException, statusCodes } = require('..');
+const { exceptions, statusCodes } = require('..');
+
+const { HttpResponseException } = exceptions;
 const { HTTP_I_AM_A_TEAPOT } = statusCodes;
 
 describe('HttpResponseException', function () {
