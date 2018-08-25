@@ -1,12 +1,12 @@
 'use strict';
 
-const exceptions = require('./lib/exceptions');
+const httpErrors = require('./lib/http-errors');
 const middlewares = require('./lib/middlewares');
-const statusCodes = require('./lib/status-codes');
+const statusCodes = require('./lib/code-constants');
 const statusTexts = require('./lib/status-texts');
 
 module.exports = {
-  exceptions,
+  httpErrors,
   middlewares,
   statusCodes,
   statusTexts
