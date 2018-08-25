@@ -2,20 +2,26 @@ const assert = require('chai').assert;
 
 const utils = require('../lib/utils');
 
-// const { HttpResponseException } = exceptions;
-// const { HTTP_I_AM_A_TEAPOT } = statusCodes;
-
-describe('Utils', function () {
+describe('utils', function () {
   before(function() {});
 
+  describe('.errNameFromDesc', function() {
+    it('should create camel case word only error name from description', function(done) {
+      const statusCodeDesc = 'I\'m a Tea-pot';
+      assert.strictEqual(utils.errNameFromDesc(statusCodeDesc), 'ImATeaPotError');
+      assert.isTrue(/Error$/g.test(utils.errNameFromDesc(statusCodeDesc)));
+      done();
+    });
 
-  // should not contain non words
-  // should remove hyphen and spaces with camel cased
-  // Should end with a single occurrence of Error
+    it('should append \'Error\' to name if description doesn\'t end with it', function(done) {
+      assert.isFalse(/(error){2,}$/ig.test(utils.errNameFromDesc('I\'m a Tea-pot Error')));
+      done();
+    });
 
-  it('should format http status code description as camel case string', function(done) {
-    const errorClassName = utils.errNameFromDesc('I\'m a Teapot')
-    assert.strictEqual(errorClassName, 'ImATeapotError');
-    done();
-  })
+    it('should return false if description is not string or empty', function(done) {
+      assert.isFalse(utils.errNameFromDesc());
+      done();
+    });
+  });
+
 });
