@@ -14,7 +14,7 @@ describe('Utils', function () {
   // Should end with a single occurrence of Error
 
   it('should format http status code description as camel case string', function(done) {
-    const errorClassName = utils.statusCodeDescToCamelCaseStr('I\'m a Teapot')
+    const errorClassName = utils.errNameFromDesc('I\'m a Teapot')
     assert.strictEqual(errorClassName, 'ImATeapotError');
     done();
   })
