@@ -24,4 +24,13 @@ describe('utils', function () {
     });
   });
 
+  describe('.errorFactor', function() {
+    it('should be instance of Error', function (done) {
+      const ImATeapotError = utils.errorFactory(418);
+      const tmp = ImATeapotError instanceof Error;
+      assert.instanceOf(ImATeapotError, Error);
+      done();
+    });
+  });
+
 });
