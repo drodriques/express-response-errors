@@ -5,14 +5,14 @@ const util = require('util');
 
 const { httpErrors, statusCodes } = require('..');
 
-const { BaseError } = httpErrors;
+const { HttpError } = httpErrors;
 const { HTTP_I_AM_A_TEAPOT } = statusCodes;
 
-describe('BaseError', function () {
+describe('HttpError', function () {
   let httpError;
 
   before(function() {
-    httpError = new BaseError(HTTP_I_AM_A_TEAPOT);
+    httpError = new HttpError(HTTP_I_AM_A_TEAPOT);
   });
 
   it('should be instance of Error', function(done) {
@@ -20,8 +20,8 @@ describe('BaseError', function () {
     done();
   })
 
-  it('should be instance of BaseError', function(done) {
-      assert(httpError instanceof BaseError);
+  it('should be instance of HttpError', function(done) {
+      assert(httpError instanceof HttpError);
       done();
   })
 
@@ -31,7 +31,7 @@ describe('BaseError', function () {
   })
 
   // it('should have name of custom class', function(done) {
-  //   assert.strictEqual(httpError.name, 'BaseError');
+  //   assert.strictEqual(httpError.name, 'HttpError');
   //   done();
   // })
   //
@@ -42,7 +42,7 @@ describe('BaseError', function () {
   //
   // it('should have message set to custom value', function(done) {
   //   const CUSTOM_ERROR_MESSAGE = 'custom message';
-  //   const { message } = new BaseError(HTTP_I_AM_A_TEAPOT, CUSTOM_ERROR_MESSAGE);
+  //   const { message } = new HttpError(HTTP_I_AM_A_TEAPOT, CUSTOM_ERROR_MESSAGE);
   //   assert.strictEqual(message, CUSTOM_ERROR_MESSAGE);
   //   done();
   // })
