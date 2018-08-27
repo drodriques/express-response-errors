@@ -1,3 +1,5 @@
+const util = require('util')
+
 const assert = require('chai').assert;
 
 const { HttpError } = require('../lib/http-errors');
@@ -26,48 +28,55 @@ describe('utils', function () {
   });
 
   describe('.errorFactor', function() {
+    let httpErrorInstance;
+    let ImATeapotError
+
+    before(function() {
+      ImATeapotError = utils.errorFactory(418);
+      httpErrorInstance = new ImATeapotError()
+    });
+
     it('should be instance of Error', function (done) {
-      const ImATeapotError = utils.errorFactory(418);
-      const errInstance = new ImATeapotError('I only brew coffee');
-      const errorInstance = new Error('Test');
-      assert.instanceOf(errInstance, HttpError);
-      assert.instanceOf(errInstance, Error);
+      assert.instanceOf(httpErrorInstance, Error);
       done();
     });
+
+    it('should be instance of HttpError', function (done) {
+      assert.instanceOf(httpErrorInstance, HttpError);
+      done();
+    });
+
+    it('should be recognized by Node.js', function(done) {
+      assert.isTrue(util.isError(httpErrorInstance));
+      done();
+    })
+
+    it('should have name of custom class', function(done) {
+      assert.strictEqual(httpErrorInstance.name, 'ImATeapotError');
+      done();
+    })
+
+    it('should have message set to default value', function(done) {
+      assert.strictEqual(httpErrorInstance.message, 'I\'m a Teapot');
+      done();
+    })
+
+    it('should have message set to custom value', function(done) {
+      const { message } = new ImATeapotError('I only brew coffee')
+      assert.strictEqual(message, 'I only brew coffee');
+      done();
+    })
+
+    it('should have code set to default value', function(done) {
+      assert.strictEqual(httpErrorInstance.code, 418);
+      done();
+    })
+
+    it('should set a value for stack', function(done) {
+      assert(httpErrorInstance.stack);
+      done();
+    })
+
   });
 
 });
-
-////
-
-// ImATeapotError: I'm a Teapot
-// at new err.(anonymous function) (/Users/drodriques/Sites/dw-express-http-errors/lib/utils.js:53:7)
-// at Context.<anonymous> (/Users/drodriques/Sites/dw-express-http-errors/test/utils.js:32:27)
-// at callFnAsync (/Users/drodriques/Sites/dw-express-http-errors/node_modules/mocha/lib/runnable.js:400:21)
-// at Test.Runnable.run (/Users/drodriques/Sites/dw-express-http-errors/node_modules/mocha/lib/runnable.js:342:7)
-// at Runner.runTest (/Users/drodriques/Sites/dw-express-http-errors/node_modules/mocha/lib/runner.js:455:10)
-// at /Users/drodriques/Sites/dw-express-http-errors/node_modules/mocha/lib/runner.js:573:12
-// at next (/Users/drodriques/Sites/dw-express-http-errors/node_modules/mocha/lib/runner.js:369:14)
-// at /Users/drodriques/Sites/dw-express-http-errors/node_modules/mocha/lib/runner.js:379:7
-// at next (/Users/drodriques/Sites/dw-express-http-errors/node_modules/mocha/lib/runner.js:303:14)
-// at Immediate._onImmediate (/Users/drodriques/Sites/dw-express-http-errors/node_modules/mocha/lib/runner.js:347:5)
-// at runCallback (timers.js:696:18)
-// at tryOnImmediate (timers.js:667:5)
-// at processImmediate (timers.js:649:5)
-
-/////
-
-// HttpError
-// at Object.errorFactory (/Users/drodriques/Sites/dw-express-http-errors/lib/utils.js:39:15)
-// at Context.<anonymous> (/Users/drodriques/Sites/dw-express-http-errors/test/utils.js:30:40)
-// at callFnAsync (/Users/drodriques/Sites/dw-express-http-errors/node_modules/mocha/lib/runnable.js:400:21)
-// at Test.Runnable.run (/Users/drodriques/Sites/dw-express-http-errors/node_modules/mocha/lib/runnable.js:342:7)
-// at Runner.runTest (/Users/drodriques/Sites/dw-express-http-errors/node_modules/mocha/lib/runner.js:455:10)
-// at /Users/drodriques/Sites/dw-express-http-errors/node_modules/mocha/lib/runner.js:573:12
-// at next (/Users/drodriques/Sites/dw-express-http-errors/node_modules/mocha/lib/runner.js:369:14)
-// at /Users/drodriques/Sites/dw-express-http-errors/node_modules/mocha/lib/runner.js:379:7
-// at next (/Users/drodriques/Sites/dw-express-http-errors/node_modules/mocha/lib/runner.js:303:14)
-// at Immediate._onImmediate (/Users/drodriques/Sites/dw-express-http-errors/node_modules/mocha/lib/runner.js:347:5)
-// at runCallback (timers.js:696:18)
-// at tryOnImmediate (timers.js:667:5)
-// at processImmediate (timers.js:649:5)
