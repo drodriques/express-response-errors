@@ -38,8 +38,8 @@ describe('HttpError', () => {
   });
 
   it('should have message set to custom value', done => {
-    const { message } = new ImATeapotError('I only brew coffee')
-    assert.strictEqual(message, 'I only brew coffee');
+    const { message } = new ImATeapotError('I only brew tea')
+    assert.strictEqual(message, 'I only brew tea');
     done();
   });
 
