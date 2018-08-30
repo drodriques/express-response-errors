@@ -1,10 +1,11 @@
-# dw-http-errors
+# dw-http-errors [![NPM Version][npm-image]][npm-url]
+
 > Collection of custom HTTP errors and methods for express.js.
 
 ## Install
 
 ```bash
-npm i dw-http-errors@beta -S
+npm i dw-http-errors -S
 ````
 
 ## Configure
@@ -94,4 +95,7 @@ Exceptions are handled by the middle which relates the message and status code.
 
 ## License
 
-MIT
+[MIT](LICENSE)
+
+[npm-image]: https://img.shields.io/npm/v/dw-http-errors.svg
+[npm-url]: https://www.npmjs.com/package/dw-http-errors
