@@ -4,7 +4,7 @@
 ## Install
 
 ```bash
-npm i dw-http-errors -S
+npm i dw-http-errors@beta -S
 ````
 
 ## Configure
@@ -12,7 +12,7 @@ npm i dw-http-errors -S
 Add middleware to your application bootstrap file:
 
 ```js
-const { httpErrorsMiddleware } = require('dw-express-http-errors');
+const { httpErrorsMiddleware } = require('dw-http-errors');
 
 app.use(httpErrorsMiddleware);
 ```
@@ -34,7 +34,7 @@ throw new HttpError(418, 'I only brew tea');
 Throw custom HTTP exception
 
 ```js
-const { ImATeapotError } = require('dw-express-http-errors');
+const { ImATeapotError } = require('dw-http-errors');
 
 // Ex. with custom status text
 throw new ImATeapotError('I only brew tea');
