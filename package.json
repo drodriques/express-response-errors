@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/drodriques/dw-express-http-errors.git"
+    "url": "git+https://github.com/drodriques/dw-http-errors.git"
   },
   "keywords": [
     "http",
