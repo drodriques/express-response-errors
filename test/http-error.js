@@ -1,6 +1,6 @@
 const assert = require('chai').assert
 
-const { HttpError, ImATeapotError } = require('../lib/http-error')
+const { HttpError, ImATeapotError } = require('..')
 
 describe('HttpError', () => {
   let httpErrorInstance
