@@ -1,6 +1,6 @@
 {
   "name": "dw-http-errors",
-  "version": "1.0.0-beta.3",
+  "version": "1.0.0-beta.4",
   "description": "A collection of HTTP utils for express",
   "main": "index.js",
   "engines": {
