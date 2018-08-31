@@ -9,52 +9,40 @@ describe('HttpError', () => {
     httpErrorInstance = new ImATeapotError()
   })
 
-  it('should be instance of Error', done => {
+  it('should be instance of Error', () => {
     assert.instanceOf(httpErrorInstance, Error)
-    done()
   })
 
-  it('should be instance of HttpError', done => {
+  it('should be instance of HttpError', () => {
     assert.instanceOf(httpErrorInstance, HttpError)
-    done()
   })
 
-  it('should be instance of ImATeapotError', done => {
+  it('should be instance of ImATeapotError', () => {
     assert.instanceOf(httpErrorInstance, ImATeapotError)
-    done()
   })
 
-  it('should have name of custom class', done => {
+  it('should have name of custom class', () => {
     assert.strictEqual(httpErrorInstance.name, 'ImATeapotError')
-    done()
   })
 
-  it('should have message set to default value', done => {
-    const { message } = httpErrorInstance
-    assert.strictEqual(message, 'I\'m a Teapot')
-    done()
+  it('should have message set to default value', () => {
+    assert.strictEqual(httpErrorInstance.message, 'I\'m a Teapot')
   })
 
-  it('should have message set to custom value', done => {
-    const err = new ImATeapotError('I only brew tea')
-    assert.strictEqual(err.message, 'I only brew tea')
-    done()
+  it('should have message set to custom value', () => {
+    const { message } = new ImATeapotError('I only brew tea')
+    assert.strictEqual(message, 'I only brew tea')
   })
 
-  it('should have code set to default value', done => {
-    const { code } = httpErrorInstance
-    assert.strictEqual(code, 418)
-    done()
+  it('should have code set to default value', () => {
+    assert.strictEqual(httpErrorInstance.code, 418)
   })
 
-  it('should set a value for stack', done => {
-    const { stack } = httpErrorInstance
-    assert(stack)
-    done()
+  it('should set a value for stack', () => {
+    assert(httpErrorInstance.stack)
   })
 
-  it('should have method toString', done => {
+  it('should have method toString', () => {
     assert.typeOf(httpErrorInstance.toString, 'function')
-    done()
   })
 })

@@ -42,7 +42,7 @@ throw new ImATeapotError('I only brew tea');
 ```
 
 Exceptions thrown without a message defaults to HTTP standard status text.
-Exceptions are handled by the middle which relates the message and status code.
+Exceptions are handled by middle which relays errors as a HTTP response.
 
 ## Base Exception
 
@@ -53,7 +53,7 @@ Exceptions are handled by the middle which relates the message and status code.
   - BadRequestError
   - UnauthorizedError
   - PaymentRequiredError
-  - ForbiddenError',
+  - ForbiddenError,
   - NotFoundError
   - MethodNotAllowedError
   - NotAcceptableError
@@ -62,7 +62,7 @@ Exceptions are handled by the middle which relates the message and status code.
   - ConflictError
   - GoneError
   - LengthRequiredError
-  - Precondition Failed
+  - PreconditionFailedError
   - PayloadTooLargeError
   - URITooLongError,
   - UnsupportedMediaTypeError
