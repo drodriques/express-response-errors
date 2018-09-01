@@ -37,6 +37,9 @@ Throw custom HTTP exception
 ```js
 const { ImATeapotError } = require('dw-http-errors');
 
+// Ex. with default status text
+throw new ImATeapotError();
+
 // Ex. with custom status text
 throw new ImATeapotError('I only brew tea');
 ```
@@ -53,7 +56,7 @@ Exceptions are handled by middle which relays errors as a HTTP response.
   - BadRequestError
   - UnauthorizedError
   - PaymentRequiredError
-  - ForbiddenError,
+  - ForbiddenError
   - NotFoundError
   - MethodNotAllowedError
   - NotAcceptableError
@@ -64,12 +67,12 @@ Exceptions are handled by middle which relays errors as a HTTP response.
   - LengthRequiredError
   - PreconditionFailedError
   - PayloadTooLargeError
-  - URITooLongError,
+  - URITooLongError
   - UnsupportedMediaTypeError
   - RangeNotSatisfiableError
   - ExpectationFailedError
   - ImATeapotError
-  - MisdirectedRequestError,
+  - MisdirectedRequestError
   - UnprocessableEntityError
   - LockedError
   - FailedDependencyError
@@ -84,7 +87,7 @@ Exceptions are handled by middle which relays errors as a HTTP response.
   - BadGatewayError
   - ServiceUnavailableError
   - GatewayTimeoutError
-  - HTTPVersionNotSupportedError
+  - HttpVersionNotSupportedError
   - VariantAlsoNegotiatesError
   - InsufficientStorageError
   - LoopDetectedError
