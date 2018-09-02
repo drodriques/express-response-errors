@@ -1,6 +1,6 @@
 # dw-http-errors [![NPM Version][npm-image]][npm-url]
 
-> Collection of custom HTTP errors and methods for express.js.
+> Collection of custom response errors and middleware for [express](https://expressjs.com).
 
 ## Install
 
