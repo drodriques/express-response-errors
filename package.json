@@ -1,6 +1,6 @@
 {
-  "name": "dw-http-errors",
-  "version": "1.0.0-beta.7",
+  "name": "express-response-errors",
+  "version": "1.0.0",
   "description": "Collection of custom response errors and middleware for express",
   "main": "index.js",
   "engines": {
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/drodriques/dw-http-errors.git"
+    "url": "git+https://github.com/drodriques/express-response-errors.git"
   },
   "keywords": [
     "http",
