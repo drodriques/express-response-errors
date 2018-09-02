@@ -1,6 +1,8 @@
 const assert = require('chai').assert
 
-const { HttpError, ImATeapotError } = require('..')
+const { HttpError, ImATeapotError, statusCodes } = require('..')
+
+const { HTTP_IM_A_TEAPOT } = statusCodes
 
 describe('HttpError', () => {
   let httpErrorInstance
@@ -35,7 +37,7 @@ describe('HttpError', () => {
   })
 
   it('should have code set to default value', () => {
-    assert.strictEqual(httpErrorInstance.code, 418)
+    assert.strictEqual(httpErrorInstance.code, HTTP_IM_A_TEAPOT)
   })
 
   it('should set a value for stack', () => {
