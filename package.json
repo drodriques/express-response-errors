@@ -1,7 +1,7 @@
 {
   "name": "dw-http-errors",
-  "version": "1.0.0-beta.6",
-  "description": "A collection of HTTP utils for express",
+  "version": "1.0.0-beta.7",
+  "description": "Collection of custom response errors and middleware for express",
   "main": "index.js",
   "engines": {
     "node": ">=10.7.0"
@@ -18,7 +18,8 @@
     "express",
     "status",
     "code",
-    "error"
+    "error",
+    "response"
   ],
   "author": {
     "name": "Dwight Rodriques",
