@@ -1,6 +1,6 @@
 # express-response-errors [![NPM Version][npm-image]][npm-url]
 
-> Collection of custom response errors and middleware for [express](https://expressjs.com).
+> Collection of custom response errors and middleware for [Express](https://expressjs.com).
 
 ## Install
 
@@ -18,82 +18,86 @@ const { httpErrorsMiddleware } = require('express-response-errors');
 app.use(httpErrorsMiddleware);
 ```
 
-## Usage
+## Usage 1
 
-Throw generic HTTP exception
+Pass HttpError exception with required code and optional message to Express from route handler.
 
 ```js
 const { HttpError } = require('express-response-errors');
 
 // Ex. with default status text
-throw new HttpError(418);
+next(new HttpError(418));
 
 // Ex. with custom message
-throw new HttpError(418, 'I only brew tea');
+next(new HttpError(418, 'I only brew tea'));
 
 ```
-Throw custom HTTP exception
+
+## Usage 2
+
+Pass a specific http exception with optional message to Express from route handler.
 
 ```js
 const { ImATeapotError } = require('express-response-errors');
 
 // Ex. with default status text
-throw new ImATeapotError();
+next(new ImATeapotError());
 
 // Ex. with custom status text
-throw new ImATeapotError('I only brew tea');
+next(new ImATeapotError('I only brew tea'));
 ```
 
-Exceptions thrown without a message defaults to HTTP standard status text.
-Exceptions are handled by middle which relays errors as a HTTP response.
+Exceptions passed to Express without a message defaults to HTTP standard status text.
 
-## Base Exception
+Exceptions are handled by middleware which sends related error message and status as a HTTP response.
+
+## Base exception
 
 - HttpError
 
-## Custom Exceptions
+## Http specific exceptions
 
-  - BadRequestError
-  - UnauthorizedError
-  - PaymentRequiredError
-  - ForbiddenError
-  - NotFoundError
-  - MethodNotAllowedError
-  - NotAcceptableError
-  - ProxyAuthenticationRequiredError
-  - RequestTimeoutError
-  - ConflictError
-  - GoneError
-  - LengthRequiredError
-  - PreconditionFailedError
-  - PayloadTooLargeError
-  - URITooLongError
-  - UnsupportedMediaTypeError
-  - RangeNotSatisfiableError
-  - ExpectationFailedError
-  - ImATeapotError
-  - MisdirectedRequestError
-  - UnprocessableEntityError
-  - LockedError
-  - FailedDependencyError
-  - UnorderedCollectionError
-  - UpgradeRequiredError
-  - PreconditionRequiredError
-  - TooManyRequestsError
-  - RequestHeaderFieldsTooLargeError
-  - UnavailableForLegalReasonsError
-  - InternalServerError
-  - NotImplementedError
-  - BadGatewayError
-  - ServiceUnavailableError
-  - GatewayTimeoutError
-  - HttpVersionNotSupportedError
-  - VariantAlsoNegotiatesError
-  - InsufficientStorageError
-  - LoopDetectedError
-  - BandwidthLimitExceededError
-  - NotExtendedError
-  - NetworkAuthenticationRequiredError
+  - 400 BadRequestError
+  - 401 UnauthorizedError
+  - 402 PaymentRequiredError
+  - 403 ForbiddenError
+  - 404 NotFoundError
+  - 405 MethodNotAllowedError
+  - 406 NotAcceptableError
+  - 407 ProxyAuthenticationRequiredError
+  - 408 RequestTimeoutError
+  - 409 ConflictError
+  - 410 GoneError
+  - 411 LengthRequiredError
+  - 412 PreconditionFailedError
+  - 413 PayloadTooLargeError
+  - 414 UriTooLongError
+  - 415 UnsupportedMediaTypeError
+  - 416 RangeNotSatisfiableError
+  - 417 ExpectationFailedError
+  - 418 ImATeapotError
+  - 421 MisdirectedRequestError
+  - 422 UnprocessableEntityError
+  - 423 LockedError
+  - 424 FailedDependencyError
+  - 425 UnorderedCollectionError
+  - 426 UpgradeRequiredError
+  - 428 PreconditionRequiredError
+  - 429 TooManyRequestsError
+  - 431 RequestHeaderFieldsTooLargeError
+  - 451 UnavailableForLegalReasonsError
+  - 500 InternalServerError
+  - 501 NotImplementedError
+  - 502 BadGatewayError
+  - 503 ServiceUnavailableError
+  - 504 GatewayTimeoutError
+  - 505 HttpVersionNotSupportedError
+  - 506 VariantAlsoNegotiatesError
+  - 507 InsufficientStorageError
+  - 508 LoopDetectedError
+  - 509 BandwidthLimitExceededError
+  - 510 NotExtendedError
+  - 511 NetworkAuthenticationRequiredError
 
 
 ## License
