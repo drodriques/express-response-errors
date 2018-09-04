@@ -1,6 +1,6 @@
 {
   "name": "express-response-errors",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Collection of custom response errors and middleware for express",
   "main": "index.js",
   "engines": {

@@ -30,14 +30,14 @@ describe('Middleware', () => {
     server.listen(SERVER_PORT)
   })
 
-  afterEach(() => {
-    server.close()
+  afterEach(done => {
+    server.close(done)
   })
 
   describe('Base Exception', () => {
-    it('should set code and default message', (done) => {
-      const handler = () => {
-        throw new HttpError(HTTP_URI_TOO_LONG)
+    it('should set code and default message', done => {
+      const handler = (req, res, next) => {
+        next(new HttpError(HTTP_URI_TOO_LONG))
       }
 
       app.get('/', router, handler, httpErrorsMiddleware)
@@ -45,9 +45,9 @@ describe('Middleware', () => {
       testResponse(server, HTTP_URI_TOO_LONG, 'URI Too Long', done)
     })
 
-    it('should set code and custom message', (done) => {
-      const handler = () => {
-        throw new HttpError(HTTP_URI_TOO_LONG, 'TL;DR')
+    it('should set code and custom message', done => {
+      const handler = (req, res, next) => {
+        next(new HttpError(HTTP_URI_TOO_LONG, 'TL;DR'))
       }
 
       app.get('/', router, handler, httpErrorsMiddleware)
@@ -56,10 +56,10 @@ describe('Middleware', () => {
     })
   })
 
-  describe('Custom Exceptions', () => {
-    it('should set code and default message', (done) => {
-      const handler = () => {
-        throw new UriTooLongError()
+  describe('Http specific exceptions', () => {
+    it('should set code and default message', done => {
+      const handler = (req, res, next) => {
+        next(new UriTooLongError())
       }
 
       app.get('/', router, handler, httpErrorsMiddleware)
@@ -67,9 +67,9 @@ describe('Middleware', () => {
       testResponse(server, HTTP_URI_TOO_LONG, 'URI Too Long', done)
     })
 
-    it('should set code and custom message', (done) => {
-      const handler = () => {
-        throw new UriTooLongError('TL;DR')
+    it('should set code and custom message', done => {
+      const handler = (req, res, next) => {
+        next(new UriTooLongError('TL;DR'))
       }
 
       app.get('/', router, handler, httpErrorsMiddleware)
