@@ -4,12 +4,11 @@ const request = require('supertest')
 
 const {
   HttpError,
-  httpErrorsMiddleware,
-  statusCodes,
+  responseErrorHandler,
   UriTooLongError
 } = require('..')
 
-const { HTTP_URI_TOO_LONG } = statusCodes
+const HTTP_URI_TOO_LONG = 414
 const SERVER_PORT = 3000
 
 function testResponse (server, code, message, done) {
@@ -20,12 +19,10 @@ function testResponse (server, code, message, done) {
 
 describe('Middleware', () => {
   let app
-  let router
   let server
 
   beforeEach(() => {
     app = express()
-    router = new express.Router()
     server = http.createServer(app)
     server.listen(SERVER_PORT)
   })
@@ -40,7 +37,7 @@ describe('Middleware', () => {
         next(new HttpError(HTTP_URI_TOO_LONG))
       }
 
-      app.get('/', router, handler, httpErrorsMiddleware)
+      app.get('/', handler, responseErrorHandler)
 
       testResponse(server, HTTP_URI_TOO_LONG, 'URI Too Long', done)
     })
@@ -50,7 +47,7 @@ describe('Middleware', () => {
         next(new HttpError(HTTP_URI_TOO_LONG, 'TL;DR'))
       }
 
-      app.get('/', router, handler, httpErrorsMiddleware)
+      app.get('/', handler, responseErrorHandler)
 
       testResponse(server, HTTP_URI_TOO_LONG, 'TL;DR', done)
     })
@@ -62,7 +59,7 @@ describe('Middleware', () => {
         next(new UriTooLongError())
       }
 
-      app.get('/', router, handler, httpErrorsMiddleware)
+      app.get('/', handler, responseErrorHandler)
 
       testResponse(server, HTTP_URI_TOO_LONG, 'URI Too Long', done)
     })
@@ -72,7 +69,7 @@ describe('Middleware', () => {
         next(new UriTooLongError('TL;DR'))
       }
 
-      app.get('/', router, handler, httpErrorsMiddleware)
+      app.get('/', handler, responseErrorHandler)
 
       testResponse(server, HTTP_URI_TOO_LONG, 'TL;DR', done)
     })

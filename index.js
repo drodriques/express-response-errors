@@ -1,11 +1,10 @@
 'use strict'
 
 const httpErrors = require('./lib/http-error')
-const { httpErrorsMiddleware } = require('./lib/middleware')
-const statusCodes = require('./lib/code-constants')
+const { responseErrorHandler } = require('./lib/middleware')
 
 module.exports = {
   ...httpErrors,
-  httpErrorsMiddleware,
-  statusCodes
+  httpErrorsMiddleware: responseErrorHandler, // Deprecated
+  responseErrorHandler
 }

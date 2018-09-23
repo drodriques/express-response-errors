@@ -13,9 +13,9 @@ npm i express-response-errors -S
 Add middleware to your application bootstrap file:
 
 ```js
-const { httpErrorsMiddleware } = require('express-response-errors');
+const { responseErrorHandler } = require('express-response-errors');
 
-app.use(httpErrorsMiddleware);
+app.use(responseErrorHandler);
 ```
 
 ## Usage 1
@@ -47,15 +47,15 @@ next(new ImATeapotError());
 next(new ImATeapotError('I only brew tea'));
 ```
 
-Exceptions passed to Express without a message defaults to HTTP standard status text.
+Errors passed to Express without a message defaults to HTTP standard status text.
 
-Exceptions are handled by middleware which sends related error message and status as a HTTP response.
+Errors are handled by middleware which sends related error message and status as a HTTP response.
 
-## Base exception
+## Base error
 
 - HttpError
 
-## Http specific exceptions
+## Named HTTP Errors
 
   - 400 BadRequestError
   - 401 UnauthorizedError

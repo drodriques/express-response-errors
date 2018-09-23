@@ -1,13 +1,17 @@
 {
   "name": "express-response-errors",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Collection of custom response errors and middleware for express",
+  "author": {
+    "name": "Dwight Rodriques",
+    "email": "drodriques@gmail.com"
+  },
   "main": "index.js",
   "engines": {
     "node": ">=10.7.0"
   },
   "scripts": {
-    "test": "mocha test"
+    "test": "mocha tests"
   },
   "repository": {
     "type": "git",
@@ -21,22 +25,19 @@
     "error",
     "response"
   ],
-  "author": {
-    "name": "Dwight Rodriques",
-    "email": "drodriques@gmail.com"
-  },
   "license": "MIT",
+  "typings": "./types/index.d.ts",
   "devDependencies": {
     "chai": "^4.1.2",
-    "eslint": "^5.4.0",
+    "eslint": "^5.6.0",
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-node": "^7.0.1",
-    "eslint-plugin-promise": "^4.0.0",
+    "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0",
     "express": "^4.16.3",
     "mocha": "^5.2.0",
-    "supertest": "^3.1.0"
+    "supertest": "^3.3.0"
   },
   "dependencies": {}
 }

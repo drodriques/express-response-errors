@@ -1,8 +1,8 @@
 const assert = require('chai').assert
 
-const { HttpError, ImATeapotError, statusCodes } = require('..')
+const { HttpError, ImATeapotError } = require('..')
 
-const { HTTP_IM_A_TEAPOT } = statusCodes
+const HTTP_IM_A_TEAPOT = 418
 
 describe('HttpError', () => {
   let httpErrorInstance
