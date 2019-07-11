@@ -1,6 +1,6 @@
 {
   "name": "express-response-errors",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Collection of custom response errors and middleware for express",
   "author": {
     "name": "Dwight Rodriques",
