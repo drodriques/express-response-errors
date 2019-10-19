@@ -11,8 +11,8 @@ const {
 const HTTP_URI_TOO_LONG = 414
 const SERVER_PORT = 3000
 
-function testResponse (server, code, message, done) {
-  request(server)
+function sendRequest (app, code, message, done) {
+  request(app)
     .get('/')
     .expect(code, { message }, done)
 }
@@ -39,7 +39,7 @@ describe('Middleware', () => {
 
       app.get('/', handler, responseErrorHandler)
 
-      testResponse(server, HTTP_URI_TOO_LONG, 'URI Too Long', done)
+      sendRequest(app, HTTP_URI_TOO_LONG, 'URI Too Long', done)
     })
 
     it('should set code and custom message', done => {
@@ -49,7 +49,7 @@ describe('Middleware', () => {
 
       app.get('/', handler, responseErrorHandler)
 
-      testResponse(server, HTTP_URI_TOO_LONG, 'TL;DR', done)
+      sendRequest(app, HTTP_URI_TOO_LONG, 'TL;DR', done)
     })
   })
 
@@ -61,7 +61,7 @@ describe('Middleware', () => {
 
       app.get('/', handler, responseErrorHandler)
 
-      testResponse(server, HTTP_URI_TOO_LONG, 'URI Too Long', done)
+      sendRequest(app, HTTP_URI_TOO_LONG, 'URI Too Long', done)
     })
 
     it('should set code and custom message', done => {
@@ -71,7 +71,7 @@ describe('Middleware', () => {
 
       app.get('/', handler, responseErrorHandler)
 
-      testResponse(server, HTTP_URI_TOO_LONG, 'TL;DR', done)
+      sendRequest(app, HTTP_URI_TOO_LONG, 'TL;DR', done)
     })
   })
 })

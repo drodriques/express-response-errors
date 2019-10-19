@@ -102,3 +102,7 @@ export const UnsupportedMediaTypeError: NamedHttpErrorConstructor<UnsupportedMed
 export const UpgradeRequiredError: NamedHttpErrorConstructor<UpgradeRequiredError>;
 export const UriTooLongError: NamedHttpErrorConstructor<UriTooLongError>;
 export const VariantAlsoNegotiatesError: NamedHttpErrorConstructor<VariantAlsoNegotiatesError>;
+
+// Middleware
+
+export function responseErrorHandler(err: object, req: object, res: object, next: Function): void;
