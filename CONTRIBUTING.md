@@ -85,14 +85,10 @@ The style tools and local rule are excluded from the published npm package.
 Use `main` as the permanent development branch, with short-lived `feature/` and
 `fix/` branches when needed.
 
-Local consolidation is complete: `master` was renamed to `main`, and local
-`develop` was deleted after confirming its history is included in `main`. All v2
-development now takes place on `main`.
-
-GitHub still uses the existing remote branches and settings. When remote changes
-are authorized, push `main`, set it as the default branch, review branch
-protections and references, then delete remote `master` and `develop`. The local
-`main` branch has no upstream until that transition is complete.
+`main` is also the GitHub default branch, and local `main` tracks `origin/main`.
+The former `master` and `develop` histories are preserved in `main`; those branch
+names have been retired locally and on GitHub. Existing branch protection was
+retained when `master` was renamed.
 
 Create a `1.x` maintenance branch only if there is an explicit need to release
 v1 fixes while v2 development continues. Historical releases are identified by
