@@ -1,0 +1,25 @@
+# Disabled: release preparation and packaging are run manually.
+name: Prepare release artifact
+# Produces a reviewable artifact only. No GitHub Release or npm publication.
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run release:check
+      - run: npm pack
+      - uses: actions/upload-artifact@v4
+        with:
+          name: npm-release-candidate
+          path: |
+            *.tgz
+            CHANGELOG.md

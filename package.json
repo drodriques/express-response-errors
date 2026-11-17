@@ -1,6 +1,6 @@
 {
   "name": "express-response-errors",
-  "version": "1.0.5",
+  "version": "2.0.0-beta.1",
   "description": "Collection of custom response errors and middleware for express",
   "author": {
     "name": "Dwight Rodriques",
@@ -8,10 +8,20 @@
   },
   "main": "index.js",
   "engines": {
-    "node": ">=10.7.0"
+    "node": ">=22.14.0"
   },
   "scripts": {
-    "test": "mocha tests"
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "npm run build && tsc -p tests/types/tsconfig.json",
+    "lint": "biome check . --error-on-warnings",
+    "test": "npm run build && node --test tests/*.test.cjs",
+    "test:package": "node scripts/test-package.cjs",
+    "validate": "npm run lint && npm run typecheck && npm test && npm run test:package",
+    "prepack": "npm run build",
+    "release:check": "npm run validate && npm audit && node scripts/release.cjs --check",
+    "release:prepare": "node scripts/release.cjs",
+    "format": "biome format --write .",
+    "format:check": "biome format ."
   },
   "repository": {
     "type": "git",
@@ -26,18 +36,28 @@
     "response"
   ],
   "license": "MIT",
-  "typings": "./types/index.d.ts",
+  "typings": "./dist/index.d.ts",
   "devDependencies": {
-    "chai": "^4.1.2",
-    "eslint": "^5.6.0",
-    "eslint-config-standard": "^12.0.0",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-node": "^7.0.1",
-    "eslint-plugin-promise": "^4.0.1",
-    "eslint-plugin-standard": "^4.0.0",
-    "express": "^4.16.3",
-    "mocha": "^5.2.0",
-    "supertest": "^3.3.0"
+    "typescript": "^6.0.3",
+    "@types/node": "^22.20.5",
+    "@types/express": "^5.0.6",
+    "express": "^5.3.0",
+    "express4": "npm:express@^4.22.3",
+    "supertest": "^7.3.2",
+    "@biomejs/biome": "^2.6.7"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "type": "commonjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "index.js",
+    "lib/",
+    "types/",
+    "dist/",
+    "docs/",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE",
+    "CONTRIBUTING.md"
+  ]
 }

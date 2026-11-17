@@ -1,0 +1,9 @@
+language js(typescript,jsx)
+
+TsUnknownType() as $type where {
+  register_diagnostic(
+    span = $type,
+    message = "Use a concrete type or a generic parameter instead of unknown.",
+    severity = "error"
+  )
+}
