@@ -91,22 +91,56 @@ next(new BadRequestError('An email address is required'))
 next(new NotFoundError())
 ```
 
+All 42 supported constructors are listed below, ordered by HTTP status.
+
 | Constructor | Status |
 | --- | --- |
 | `BadRequestError` | 400 |
 | `UnauthorizedError` | 401 |
+| `PaymentRequiredError` | 402 |
 | `ForbiddenError` | 403 |
 | `NotFoundError` | 404 |
+| `MethodNotAllowedError` | 405 |
+| `NotAcceptableError` | 406 |
+| `ProxyAuthenticationRequiredError` | 407 |
+| `RequestTimeoutError` | 408 |
 | `ConflictError` | 409 |
+| `GoneError` | 410 |
+| `LengthRequiredError` | 411 |
+| `PreconditionFailedError` | 412 |
+| `PayloadTooLargeError` | 413 |
+| `UriTooLongError` | 414 |
+| `UnsupportedMediaTypeError` | 415 |
+| `RangeNotSatisfiableError` | 416 |
+| `ExpectationFailedError` | 417 |
+| `ImATeapotError` | 418 |
+| `MisdirectedRequestError` | 421 |
 | `UnprocessableEntityError` | 422 |
+| `LockedError` | 423 |
+| `FailedDependencyError` | 424 |
+| `TooEarlyError` | 425 |
+| `UnorderedCollectionError` (deprecated) | 425 |
+| `UpgradeRequiredError` | 426 |
+| `PreconditionRequiredError` | 428 |
 | `TooManyRequestsError` | 429 |
+| `RequestHeaderFieldsTooLargeError` | 431 |
+| `UnavailableForLegalReasonsError` | 451 |
 | `InternalServerError` | 500 |
+| `NotImplementedError` | 501 |
+| `BadGatewayError` | 502 |
 | `ServiceUnavailableError` | 503 |
+| `GatewayTimeoutError` | 504 |
+| `HttpVersionNotSupportedError` | 505 |
+| `VariantAlsoNegotiatesError` | 506 |
+| `InsufficientStorageError` | 507 |
+| `LoopDetectedError` | 508 |
+| `BandwidthLimitExceededError` | 509 |
+| `NotExtendedError` | 510 |
+| `NetworkAuthenticationRequiredError` | 511 |
 
 Named errors inherit from `HttpError` and `Error`. All historical named exports
 remain available. Both `TooEarlyError` and the deprecated
 `UnorderedCollectionError` use status 425 and the default message `Too Early`.
-See the package declarations for the full list.
 
 ## Attach error context
 
