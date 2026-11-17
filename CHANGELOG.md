@@ -5,9 +5,9 @@ are assigned to a release.
 
 ## Unreleased
 
-## 2.0.0-beta.1 — In preparation
+## 2.0.0-beta.1 — 2026-11-17
 
-First beta of v2. Publication is pending. See the
+First beta of v2. See the
 [migration guide](docs/migration_v2.md) before upgrading from v1.
 
 ### Breaking changes

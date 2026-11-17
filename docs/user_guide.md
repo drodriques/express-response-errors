@@ -1,6 +1,6 @@
 # express-response-errors user guide
 
-This guide covers the `2.0.0-beta.1` prerelease. Publication is pending. It requires
+This guide covers the `2.0.0-beta.1` prerelease. It requires
 Node.js 22.14.0 or later and supports Express 4 and 5. For changes from v1, see the
 [migration guide](migration_v2.md). For an overview, see the [README](../README.md).
 
@@ -20,20 +20,7 @@ Node.js 22.14.0 or later and supports Express 4 and 5. For changes from v1, see 
 
 ## Install and configure
 
-Until this beta is published, build a local archive from the library repository:
-
-```sh
-npm ci
-npm pack
-```
-
-Then install that archive in your application, replacing the example path:
-
-```sh
-npm install /path/to/express-response-errors/express-response-errors-2.0.0-beta.1.tgz
-```
-
-After publication, install the beta explicitly from npm:
+Install the beta explicitly from npm:
 
 ```sh
 npm install express-response-errors@2.0.0-beta.1

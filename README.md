@@ -3,7 +3,7 @@
 HTTP error constructors and JSON error middleware for Express. Written in
 TypeScript, with built-in type declarations and no runtime dependencies.
 
-**v2 prerelease:** `2.0.0-beta.1` is prepared locally; publication is pending.
+**v2 prerelease:** `2.0.0-beta.1`.
 See the [release notes](CHANGELOG.md) and [migration guide](docs/migration_v2.md)
 for changes from v1.
 

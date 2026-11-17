@@ -102,10 +102,10 @@ versioned entry in `CHANGELOG.md` must agree. Add user-facing notes under
 appropriate. Explain observable behavior and link migration guidance for major
 changes. Keep one canonical entry rather than rewriting notes in multiple places.
 
-The current candidate is `2.0.0-beta.1`. Its notes are consolidated under
-`2.0.0-beta.1 — In preparation`; the empty Unreleased section is reserved for
-future changes. Set the release date when publication is ready. A prepared entry
-does not mean that a package has been published.
+The current version is `2.0.0-beta.1`. Its dated changelog entry contains the
+release notes; the empty Unreleased section is reserved for future changes.
+A prepared entry does not mean that a package has been published: verify npm
+before announcing availability.
 
 When the next candidate is ready, for example:
 
@@ -122,6 +122,16 @@ invalid versions, reused versions, or inconsistent metadata.
 To create a local release archive after checks pass, run `npm pack`. Review the
 archive and the version's changelog entry before any publication. These commands
 do not push to GitHub or publish to npm.
+
+To test a local archive in another application, install it from that application's
+directory, replacing the example path and version as needed:
+
+```sh
+npm install /path/to/express-response-errors/express-response-errors-2.0.0-beta.1.tgz
+```
+
+Restart the application after installation. The private playground's README
+documents its local setup and manual HTTP checks.
 
 The files under `.github/workflows/` end in `.disabled` and are kept only as
 optional references. GitHub Actions will not run them. Validation uses the Node

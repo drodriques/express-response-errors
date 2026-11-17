@@ -1,7 +1,6 @@
 # Migrating from v1 to v2
 
-This guide covers `2.0.0-beta.1`, the first v2 prerelease. It is prepared locally;
-publication is pending. Use a local package archive until it is published.
+This guide covers `2.0.0-beta.1`, the first v2 prerelease.
 See the [user guide](user_guide.md#install-and-configure) for installation steps.
 
 ## Requirements and breaking changes
